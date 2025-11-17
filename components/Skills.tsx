@@ -33,7 +33,6 @@ export default function Skills() {
                     color: "text-blue-600 dark:text-blue-400",
                     bgColor: "bg-blue-500",
                     level: t("skills.level.advanced"),
-                    progress: 90,
                 },
                 {
                     name: "C++",
@@ -41,7 +40,6 @@ export default function Skills() {
                     color: "text-blue-700 dark:text-blue-500",
                     bgColor: "bg-blue-600",
                     level: t("skills.level.advanced"),
-                    progress: 85,
                 },
             ],
         },
@@ -54,7 +52,6 @@ export default function Skills() {
                     color: "text-yellow-500 dark:text-yellow-400",
                     bgColor: "bg-yellow-500",
                     level: t("skills.level.intermediate"),
-                    progress: 75,
                 },
                 {
                     name: "JavaScript",
@@ -62,7 +59,6 @@ export default function Skills() {
                     color: "text-yellow-400 dark:text-yellow-300",
                     bgColor: "bg-yellow-400",
                     level: t("skills.level.intermediate"),
-                    progress: 70,
                 },
                 {
                     name: "HTML5",
@@ -70,7 +66,6 @@ export default function Skills() {
                     color: "text-orange-600 dark:text-orange-400",
                     bgColor: "bg-orange-500",
                     level: t("skills.level.intermediate"),
-                    progress: 80,
                 },
                 {
                     name: "CSS3",
@@ -78,7 +73,6 @@ export default function Skills() {
                     color: "text-blue-500 dark:text-blue-400",
                     bgColor: "bg-blue-500",
                     level: t("skills.level.intermediate"),
-                    progress: 75,
                 },
             ],
         },
@@ -91,7 +85,6 @@ export default function Skills() {
                     color: "text-orange-600 dark:text-orange-400",
                     bgColor: "bg-orange-600",
                     level: t("skills.level.proficient"),
-                    progress: 85,
                 },
                 {
                     name: "GitHub",
@@ -99,7 +92,6 @@ export default function Skills() {
                     color: "text-gray-800 dark:text-gray-200",
                     bgColor: "bg-gray-700",
                     level: t("skills.level.proficient"),
-                    progress: 80,
                 },
                 {
                     name: "Linux",
@@ -107,7 +99,6 @@ export default function Skills() {
                     color: "text-yellow-600 dark:text-yellow-400",
                     bgColor: "bg-yellow-600",
                     level: t("skills.level.proficient"),
-                    progress: 85,
                 },
                 {
                     name: "VS Code",
@@ -115,7 +106,6 @@ export default function Skills() {
                     color: "text-blue-500 dark:text-blue-400",
                     bgColor: "bg-blue-500",
                     level: t("skills.level.proficient"),
-                    progress: 90,
                 },
             ],
         },
@@ -188,7 +178,7 @@ export default function Skills() {
                     </p>
                 </motion.div>
 
-                {/* Skills with animated progress bars */}
+                {/* Skills Grid sans barres de progression */}
                 <div className="grid lg:grid-cols-3 gap-8 mb-16">
                     {skillsWithProgress.map((skillGroup, groupIndex) => (
                         <motion.div
@@ -207,71 +197,41 @@ export default function Skills() {
                                 <span className="w-2 h-2 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full animate-pulse" />
                                 {skillGroup.category}
                             </h3>
-                            <div className="space-y-5">
+                            <div className="grid grid-cols-2 gap-4">
                                 {skillGroup.items.map((skill, index) => (
                                     <motion.div
                                         key={skill.name}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
+                                        initial={{ opacity: 0, scale: 0 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
                                         viewport={{ once: true }}
                                         transition={{
                                             duration: 0.4,
                                             delay:
                                                 groupIndex * 0.2 + index * 0.1,
                                         }}
-                                        whileHover={{ scale: 1.02 }}
-                                        className="group"
+                                        whileHover={{ scale: 1.05, y: -5 }}
+                                        className="group relative"
                                     >
-                                        <div className="flex items-center gap-3 mb-2">
+                                        <div className="flex flex-col items-center gap-3 p-4 bg-white dark:bg-gray-900 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 dark:border-gray-800">
                                             <motion.div
                                                 whileHover={{
                                                     rotate: 360,
-                                                    scale: 1.2,
                                                 }}
                                                 transition={{ duration: 0.5 }}
-                                                className="p-2 bg-white dark:bg-gray-900 rounded-lg shadow-sm"
+                                                className={`p-3 bg-gradient-to-br ${skill.bgColor} rounded-lg`}
                                             >
                                                 <skill.icon
-                                                    className={`w-6 h-6 ${skill.color}`}
+                                                    className="w-8 h-8 text-white"
                                                 />
                                             </motion.div>
-                                            <div className="flex-1">
-                                                <div className="flex justify-between items-center">
-                                                    <p className="font-semibold">
-                                                        {skill.name}
-                                                    </p>
-                                                    <span className="text-xs text-gray-500 dark:text-gray-400">
-                                                        {skill.progress}%
-                                                    </span>
-                                                </div>
+                                            <div className="text-center">
+                                                <p className="font-semibold text-sm mb-1">
+                                                    {skill.name}
+                                                </p>
+                                                <p className="text-xs text-gray-500 dark:text-gray-400">
+                                                    {skill.level}
+                                                </p>
                                             </div>
-                                        </div>
-                                        {/* Animated progress bar */}
-                                        <div className="relative h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
-                                            <motion.div
-                                                className={`absolute inset-y-0 left-0 ${skill.bgColor} rounded-full`}
-                                                initial={{ width: 0 }}
-                                                whileInView={{
-                                                    width: `${skill.progress}%`,
-                                                }}
-                                                viewport={{ once: true }}
-                                                transition={{
-                                                    duration: 1,
-                                                    delay:
-                                                        groupIndex * 0.2 +
-                                                        index * 0.1 +
-                                                        0.2,
-                                                    ease: "easeOut",
-                                                }}
-                                            />
-                                            {/* Shimmer effect */}
-                                            <motion.div
-                                                className="absolute inset-0 shimmer"
-                                                style={{
-                                                    background:
-                                                        "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)",
-                                                }}
-                                            />
                                         </div>
                                     </motion.div>
                                 ))}

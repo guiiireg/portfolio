@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink, FiFolder } from "react-icons/fi";
-import { SiPython, SiC, SiCplusplus } from "react-icons/si";
+import { SiPython, SiC } from "react-icons/si";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useState } from "react";
 
@@ -51,7 +51,7 @@ export default function Projects() {
             description: t("projects.memalloc.desc"),
             tags: ["C", "Memory Management", "Algorithms", "Systems"],
             github: "https://github.com/guiiireg/MemAlloc",
-            icon: SiCplusplus,
+            icon: SiC,
             color: "from-purple-500 to-pink-600",
             bgGradient: "from-purple-500/20 to-pink-500/20",
             features: [
