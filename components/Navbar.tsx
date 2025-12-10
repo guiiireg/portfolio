@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { FiMenu, FiX, FiCode } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,27 +11,56 @@ export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("#home");
+    const observerRef = useRef<IntersectionObserver | null>(null);
 
+    // Throttle scroll handler for better performance
     useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+        let ticking = false;
 
-            // Update active section based on scroll position
-            const sections = ["#home", "#about", "#skills", "#projects", "#contact"];
-            for (const section of sections) {
-                const element = document.querySelector(section);
-                if (element) {
-                    const rect = element.getBoundingClientRect();
-                    if (rect.top <= 100 && rect.bottom >= 100) {
-                        setActiveSection(section);
-                        break;
-                    }
-                }
+        const handleScroll = () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    setIsScrolled(window.scrollY > 20);
+                    ticking = false;
+                });
+                ticking = true;
             }
         };
 
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    // Use Intersection Observer for smoother section detection
+    useEffect(() => {
+        const sections = ["home", "about", "skills", "projects", "contact"];
+
+        observerRef.current = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(`#${entry.target.id}`);
+                    }
+                });
+            },
+            {
+                rootMargin: "-50% 0px -50% 0px",
+                threshold: 0,
+            }
+        );
+
+        sections.forEach((section) => {
+            const element = document.getElementById(section);
+            if (element && observerRef.current) {
+                observerRef.current.observe(element);
+            }
+        });
+
+        return () => {
+            if (observerRef.current) {
+                observerRef.current.disconnect();
+            }
+        };
     }, []);
 
     const navLinks = [
@@ -42,25 +71,37 @@ export default function Navbar() {
         { href: "#contact", label: t("nav.contact") },
     ];
 
-    const handleNavClick = (
-        e: React.MouseEvent<HTMLAnchorElement>,
-        href: string,
-    ) => {
-        e.preventDefault();
-        setIsMobileMenuOpen(false);
-        setActiveSection(href);
-        const element = document.querySelector(href);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-        }
-    };
+    const handleNavClick = useCallback(
+        (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+            e.preventDefault();
+            setIsMobileMenuOpen(false);
+            setActiveSection(href);
+            const element = document.querySelector(href);
+            if (element) {
+                const navbarHeight = 64; // h-16 = 64px
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth",
+                });
+            }
+        },
+        []
+    );
 
     return (
         <motion.nav
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            transition={{ duration: 0.5 }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+            transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
+                duration: 0.3
+            }}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
                 isScrolled
                     ? "glass-effect border-b border-purple-500/20 shadow-lg"
                     : "bg-transparent"
@@ -114,8 +155,9 @@ export default function Navbar() {
                                             className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full -z-10"
                                             transition={{
                                                 type: "spring",
-                                                stiffness: 380,
-                                                damping: 30,
+                                                stiffness: 200,
+                                                damping: 25,
+                                                mass: 0.8,
                                             }}
                                         />
                                     )}
@@ -167,7 +209,10 @@ export default function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{
+                            duration: 0.25,
+                            ease: [0.4, 0, 0.2, 1]
+                        }}
                         className="md:hidden overflow-hidden glass-effect border-t border-purple-500/20"
                     >
                         <div className="px-4 py-4 space-y-2">
