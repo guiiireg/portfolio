@@ -12,6 +12,8 @@ export default function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("#home");
     const observerRef = useRef<IntersectionObserver | null>(null);
+    const isProgrammaticScrollRef = useRef(false);
+    const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     // Throttle scroll handler for better performance
     useEffect(() => {
@@ -37,6 +39,11 @@ export default function Navbar() {
 
         observerRef.current = new IntersectionObserver(
             (entries) => {
+                // Ignore Intersection Observer updates during programmatic scrolling
+                if (isProgrammaticScrollRef.current) {
+                    return;
+                }
+
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         setActiveSection(`#${entry.target.id}`);
@@ -60,6 +67,9 @@ export default function Navbar() {
             if (observerRef.current) {
                 observerRef.current.disconnect();
             }
+            if (scrollTimeoutRef.current) {
+                clearTimeout(scrollTimeoutRef.current);
+            }
         };
     }, []);
 
@@ -75,7 +85,18 @@ export default function Navbar() {
         (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
             e.preventDefault();
             setIsMobileMenuOpen(false);
+
+            // Immediately update active section for smooth transition
             setActiveSection(href);
+
+            // Block Intersection Observer updates during programmatic scroll
+            isProgrammaticScrollRef.current = true;
+
+            // Clear any existing timeout
+            if (scrollTimeoutRef.current) {
+                clearTimeout(scrollTimeoutRef.current);
+            }
+
             const element = document.querySelector(href);
             if (element) {
                 const navbarHeight = 64; // h-16 = 64px
@@ -86,6 +107,12 @@ export default function Navbar() {
                     top: offsetPosition,
                     behavior: "smooth",
                 });
+
+                // Re-enable Intersection Observer after scroll completes
+                // Smooth scroll typically takes 500-1000ms, we'll wait 1000ms to be safe
+                scrollTimeoutRef.current = setTimeout(() => {
+                    isProgrammaticScrollRef.current = false;
+                }, 1000);
             }
         },
         []
