@@ -41,8 +41,26 @@ export default function Home() {
     { 
       title: "PHP E-Commerce", 
       desc: "Application e-commerce complète en PHP natif avec séparation backend/frontend.", 
-      context: "Projet réalisé en équipe de 4 personnes. Développé pour bien comprendre les fondations du métier (sans framework).",
-      challenges: "Création d'un système MVC maison, gestion sécurisée des sessions, et paniers.",
+      context: "Projet réalisé en équipe de 4 personnes pour développer une application e-commerce complète en PHP 8 natif sans framework, afin de maîtriser les fondamentaux du développement web et la gestion d'une base de données relationnelle.",
+      features: [
+        "Authentification sécurisée des utilisateurs et gestion des rôles (User / Admin).",
+        "Catalogue de produits interactif avec recherche par mot-clé et filtres de tri par prix et date.",
+        "Gestion d'un panier persistant avec ajustement des quantités et sous-total/total.",
+        "Passage de commande avec solde bancaire virtuel, décrémentation des stocks en temps réel et génération de factures.",
+        "Tableau de bord d'administration (CRUD articles, modération d'utilisateurs et suivi des factures)."
+      ],
+      skills: [
+        "Découplage architectural backend/frontend en PHP natif.",
+        "Sécurisation applicative : requêtes préparées PDO contre les injections SQL, hachage des mots de passe (password_hash) et protection XSS (htmlspecialchars).",
+        "Gestion des transactions SQL et intégrité de la base de données lors des commandes.",
+        "Travail collaboratif sur Git/GitHub et structuration propre du code."
+      ],
+      learned: "Ce projet m'a permis d'assimiler les mécaniques fondamentales du web (gestion des sessions, routage HTTP, requêtes SQL natives et sécurité) avant d'utiliser des frameworks de plus haut niveau comme Laravel ou Spring Boot.",
+      technicalSection: {
+        architecture: "Architecture modulable en couches avec séparation stricte des contrôleurs backend et des vues frontend.",
+        pipeline: ["Frontend", "PHP", "PDO", "MySQL"]
+      },
+      challenges: "Création d'un système de routage et de sessions maison, sécurisation globale contre les failles OWASP, et gestion atomique des stocks.",
       role: "Développeur Full-Stack (Équipe de 4)",
       tags: ["PHP 8", "MySQL", "PDO", "HTML/CSS"], 
       color: "from-indigo-500/20 to-blue-500/20",
@@ -239,20 +257,75 @@ export default function Home() {
             </header>
 
             <section className="space-y-8">
-              <article>
-                <h3 className="text-xl font-semibold text-white mb-3">Contexte du projet</h3>
-                <p className="text-gray-400 leading-relaxed">{selectedProject.context}</p>
-              </article>
+              {selectedProject.context && (
+                <article>
+                  <h3 className="text-xl font-semibold text-white mb-3">Contexte du projet</h3>
+                  <p className="text-gray-400 leading-relaxed">{selectedProject.context}</p>
+                </article>
+              )}
               
-              <article>
-                <h3 className="text-xl font-semibold text-white mb-3">Défis techniques</h3>
-                <p className="text-gray-400 leading-relaxed">{selectedProject.challenges}</p>
-              </article>
+              {selectedProject.features && (
+                <article>
+                  <h3 className="text-xl font-semibold text-white mb-3">Fonctionnalités</h3>
+                  <ul className="list-disc list-inside text-gray-400 space-y-2 leading-relaxed">
+                    {selectedProject.features.map((feature: string, idx: number) => (
+                      <li key={idx}>{feature}</li>
+                    ))}
+                  </ul>
+                </article>
+              )}
+
+              {selectedProject.skills && (
+                <article>
+                  <h3 className="text-xl font-semibold text-white mb-3">Compétences mises en pratique</h3>
+                  <ul className="list-disc list-inside text-gray-400 space-y-2 leading-relaxed">
+                    {selectedProject.skills.map((skill: string, idx: number) => (
+                      <li key={idx}>{skill}</li>
+                    ))}
+                  </ul>
+                </article>
+              )}
+
+              {selectedProject.learned && (
+                <article>
+                  <h3 className="text-xl font-semibold text-white mb-3">Ce que j'ai appris</h3>
+                  <p className="text-gray-400 leading-relaxed">{selectedProject.learned}</p>
+                </article>
+              )}
+
+              {selectedProject.technicalSection && (
+                <article>
+                  <h3 className="text-xl font-semibold text-white mb-3">Section Technique</h3>
+                  <div className="bg-white/5 border border-white/10 rounded-2xl p-5 text-gray-300 space-y-4">
+                    <p className="leading-relaxed">
+                      <strong className="text-white font-medium">Architecture :</strong> {selectedProject.technicalSection.architecture}
+                    </p>
+                    <div className="flex items-center gap-2 flex-wrap font-mono text-xs md:text-sm bg-black/40 p-3.5 rounded-xl border border-white/5">
+                      <span className="px-3 py-1 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-semibold">Frontend</span>
+                      <span className="text-gray-500">→</span>
+                      <span className="px-3 py-1 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30 font-semibold">PHP</span>
+                      <span className="text-gray-500">→</span>
+                      <span className="px-3 py-1 rounded bg-blue-500/20 text-blue-300 border border-blue-500/30 font-semibold">PDO</span>
+                      <span className="text-gray-500">→</span>
+                      <span className="px-3 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">MySQL</span>
+                    </div>
+                  </div>
+                </article>
+              )}
+
+              {selectedProject.challenges && (
+                <article>
+                  <h3 className="text-xl font-semibold text-white mb-3">Défis techniques</h3>
+                  <p className="text-gray-400 leading-relaxed">{selectedProject.challenges}</p>
+                </article>
+              )}
               
-              <article>
-                <h3 className="text-xl font-semibold text-white mb-3">Mon rôle</h3>
-                <p className="text-gray-400 leading-relaxed">{selectedProject.role}</p>
-              </article>
+              {selectedProject.role && (
+                <article>
+                  <h3 className="text-xl font-semibold text-white mb-3">Mon rôle</h3>
+                  <p className="text-gray-400 leading-relaxed">{selectedProject.role}</p>
+                </article>
+              )}
               
               <footer className="pt-8 border-t border-white/10 flex gap-4">
                 <a href={selectedProject.link} target="_blank" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-black font-semibold hover:bg-gray-200 transition-colors">
