@@ -68,10 +68,30 @@ export default function Home() {
     },
     { 
       title: "Portfolio", 
-      desc: "Le portfolio sur lequel vous naviguez actuellement ! Un site vitrine moderne et sémantique.", 
-      context: "Besoin d'un espace pour présenter mes projets et compétences de manière professionnelle.",
-      challenges: "Design UI/UX premium, utilisation stricte de balises sémantiques HTML5 sans utiliser de div ni de span.",
-      role: "Développeur Front-End",
+      desc: "Site vitrine moderne, dynamique et sémantique présentant mes projets et compétences de développeur Full-Stack.", 
+      context: "Présentation interactive de mes projets et compétences techniques à destination de recruteurs, collaborateurs et clients. Le site offre une vitrine claire, épurée et immersive avec un haut niveau d'exigence UI/UX.",
+      objectives: [
+        "Créer une plateforme d'exposition professionnelle performante, moderne et engageante.",
+        "Proposer une navigation fluide avec défilement doux et modales d'exploration détaillée par projet.",
+        "Mettre en valeur mes réalisations Full-Stack avec une structuration claire des compétences."
+      ],
+      features: [
+        "Hero section interactive avec statut de disponibilité et badges technologiques.",
+        "Section À propos illustrée avec récapitulatif du parcours et expertises.",
+        "Grille de compétences techniques structurée par domaines (Langages, Frontend, Backend, Databases & DevOps).",
+        "Vitrine de projets avec modales détaillées (contexte, fonctionnalités, compétences, leçons apprises et liens GitHub).",
+        "Navigation par ancres fluides (smooth scrolling)."
+      ],
+      learned: "Ce projet m'a permis de perfectionner l'utilisation de Next.js (App Router, Server & Client Components) et de Tailwind CSS v4. J'y ai également renforcé le respect des normes sémantiques HTML5 et le typage strict en TypeScript.",
+      techFeatures: [
+        "Responsive Design (adaptation fluide de mobile à desktop via Tailwind)",
+        "Dark Mode natif (palette épurée #050505 avec effets d'arrière-plan ambiants)",
+        "TypeScript strict (interfaces typées et sécurité de code)",
+        "Animations CSS & Micro-interactions (keyframes blob, effets de survol, glassmorphism)",
+        "HTML Sémantique (utilisation rigoureuse de main, header, article, section, figure)",
+        "Performance & SEO (métadonnées Next.js, rendu statique et Next Image)"
+      ],
+      role: "Développeur Front-End (Solo)",
       tags: ["Next.js", "React", "Tailwind CSS", "TypeScript"], 
       color: "from-purple-500/20 to-pink-500/20",
       link: "https://github.com/guiiireg/portfolio"
@@ -259,8 +279,19 @@ export default function Home() {
             <section className="space-y-8">
               {selectedProject.context && (
                 <article>
-                  <h3 className="text-xl font-semibold text-white mb-3">Contexte du projet</h3>
+                  <h3 className="text-xl font-semibold text-white mb-3">Présentation & Contexte</h3>
                   <p className="text-gray-400 leading-relaxed">{selectedProject.context}</p>
+                </article>
+              )}
+
+              {selectedProject.objectives && (
+                <article>
+                  <h3 className="text-xl font-semibold text-white mb-3">Objectifs</h3>
+                  <ul className="list-disc list-inside text-gray-400 space-y-2 leading-relaxed">
+                    {selectedProject.objectives.map((obj: string, idx: number) => (
+                      <li key={idx}>{obj}</li>
+                    ))}
+                  </ul>
                 </article>
               )}
               
@@ -310,6 +341,17 @@ export default function Home() {
                       <span className="px-3 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">MySQL</span>
                     </div>
                   </div>
+                </article>
+              )}
+
+              {selectedProject.techFeatures && (
+                <article>
+                  <h3 className="text-xl font-semibold text-white mb-3">Caractéristiques techniques</h3>
+                  <ul className="list-disc list-inside text-gray-400 space-y-2 leading-relaxed">
+                    {selectedProject.techFeatures.map((item: string, idx: number) => (
+                      <li key={idx}>{item}</li>
+                    ))}
+                  </ul>
                 </article>
               )}
 
