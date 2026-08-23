@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Guireg Naël - Portfolio",
-  description: "Portfolio de développeur web, créateur d'expériences numériques.",
+  title: "Guireg Naël | Développeur Full-Stack",
+  description: "Portfolio de Guireg Naël, étudiant en développement informatique à la recherche d'une alternance Full-Stack / Backend pour septembre 2026.",
 };
 
 export default function RootLayout({
@@ -23,11 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="fr" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }
