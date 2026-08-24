@@ -120,6 +120,7 @@ export default function Home() {
         "Espace d'administration complet : CRUD articles, gestion des stocks et modération des comptes.",
       ],
       link: "https://github.com/guiiireg/php-e-commerce",
+      liveUrl: "https://guireg.alwaysdata.net",
     },
   ];
 
