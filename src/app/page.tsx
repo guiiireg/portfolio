@@ -90,6 +90,7 @@ export default function Home() {
         "Conteneurisation de la base de données avec Docker Compose et tests automatisés (JUnit 5, Jasmine / Karma).",
       ],
       link: "https://github.com/guiiireg/code-quest",
+      liveUrl: "https://code-quest-bv1.pages.dev",
     },
     {
       title: "CityDrive Manager",
