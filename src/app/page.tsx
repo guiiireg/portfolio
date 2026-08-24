@@ -16,6 +16,7 @@ import {
   CheckCircle2,
   Calendar,
   Briefcase,
+  Globe,
 } from "lucide-react";
 
 function GithubIcon({ className = "w-4 h-4", size = 16 }: { className?: string; size?: number }) {
@@ -73,6 +74,7 @@ export default function Home() {
         "Rédaction et intégration d'un article technique de référence sur les standards web et la structure sémantique.",
       ],
       link: "https://github.com/Exoncode-stream/Exon",
+      liveUrl: "https://exon-ten.vercel.app/",
     },
     {
       title: "Code Quest",
@@ -334,16 +336,30 @@ export default function Home() {
                       {project.subtitle}
                     </p>
                   </div>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-zinc-800/80 text-zinc-200 border border-zinc-700 hover:bg-zinc-700 hover:text-white transition-all w-fit"
-                  >
-                    <GithubIcon size={14} />
-                    <span>Voir sur GitHub</span>
-                    <ArrowUpRight size={12} />
-                  </a>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {"liveUrl" in project && project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-300 border border-indigo-500/30 hover:bg-indigo-600/30 hover:text-white transition-all w-fit"
+                      >
+                        <Globe size={14} />
+                        <span>Visiter le site</span>
+                        <ArrowUpRight size={12} />
+                      </a>
+                    )}
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-zinc-800/80 text-zinc-200 border border-zinc-700 hover:bg-zinc-700 hover:text-white transition-all w-fit"
+                    >
+                      <GithubIcon size={14} />
+                      <span>Voir sur GitHub</span>
+                      <ArrowUpRight size={12} />
+                    </a>
+                  </div>
                 </header>
 
                 <p className="text-sm text-zinc-300 leading-relaxed mt-4">
