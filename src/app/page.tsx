@@ -470,7 +470,7 @@ export default function Home() {
                 <h3 className="text-base font-semibold text-white">Outils &amp; Environnement</h3>
               </div>
               <p className="text-sm font-mono text-zinc-300 leading-relaxed">
-                Git · GitHub · Docker · Docker Compose · Linux (Bash/CLI) · Neovim · CI/CD
+                Git · GitHub · Docker · Docker Compose · Linux (Bash/CLI)
               </p>
             </div>
           </div>
@@ -713,11 +713,7 @@ export default function Home() {
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-emerald-400 mt-0.5">•</span>
-                    <span>Mise en place de pipelines CI/CD simples</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-emerald-400 mt-0.5">•</span>
-                    <span>Productivité avancée au terminal (Neovim, Bash, Git)</span>
+                    <span>Productivité avancée au terminal (Bash, Git)</span>
                   </li>
                 </ul>
               </div>
