@@ -1,0 +1,10 @@
+{
+  "description": "Showcases a modern portfolio highlighting academic background, projects, skills, and professional experiences to attract internship or apprenticeship opportunities.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
