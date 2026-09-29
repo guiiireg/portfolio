@@ -188,17 +188,18 @@ const skills = [
 
 const experiences = [
     {
-        period: "Novembre 2025 - Février 2026",
-        title: "Développeur n8n",
-        meta: "Stage · Nantes",
-        text: "Participation au développement d'un outil d'automatisation via les API Microsoft en autonomie.",
-    },
-    {
         period: "Depuis Février 2026",
         title: "Streamer & YouTubeur",
         meta: "Création de contenu · Indépendant",
         text: "Lives et vidéos autour du développement informatique : vulgarisation, projets en direct et animation d’une communauté tech anglophone.",
     },
+    {
+        period: "Novembre 2025 - Février 2026",
+        title: "Développeur n8n",
+        meta: "Stage · Nantes",
+        text: "Participation au développement d'un outil d'automatisation via les API Microsoft en autonomie.",
+    },
+,
     {
         period: "Octobre 2024 - Décembre 2024",
         title: "Hôe de caisse",
@@ -493,7 +494,7 @@ export default function App() {
                                     <span className="inline-flex rounded-full bg-white/15 px-3 py-1 font-mono text-xs">
                                         EN COURS
                                     </span>
-                                    <p className="mt-10 text-sm text-blue-100">2023 — 2026</p>
+                                    <p className="mt-10 text-sm text-blue-100">2024 — 2027</p>
                                     <Heading
                                         level={3}
                                         className="mt-2 text-3xl font-bold leading-tight"
