@@ -202,7 +202,7 @@ const experiences = [
 ,
     {
         period: "Octobre 2024 - Décembre 2024",
-        title: "Hôe de caisse",
+        title: "Hôte de caisse",
         meta: "Job étudiant",
         text: "Autonomie, sens du service et gestion des priorités et résolution de problèmes dans un environnement rythmé.",
     },
