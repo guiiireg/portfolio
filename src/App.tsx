@@ -207,7 +207,7 @@ const experiences = [
         text: "Autonomie, sens du service et gestion des priorités et résolution de problèmes dans un environnement rythmé.",
     },
     {
-        period: "Édition 2024",
+        period: "Édition 2023",
         title: "Bénévole au DevFest",
         meta: "DevFest Nantes",
         text: "Accueil des participants, accompagnement des speakers et soutien logistique d’un événement majeur de la communauté dev.",
