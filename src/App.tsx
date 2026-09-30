@@ -310,7 +310,7 @@ export default function App() {
                                     />
                                 </Link>
                                 <Link
-                                    href="mailto:guireg.nael@ynov.com"
+                                    href="mailto:guiregnael.pro@gmail.com"
                                     className="inline-flex items-center gap-3 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-950"
                                 >
                                     <Icon name="mail" className="size-4" />
