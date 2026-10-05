@@ -162,6 +162,19 @@ const projects = [
     github: "https://github.com/guiiireg/code-quest",
     accent: "bg-violet-600",
   },
+  {
+    number: "03",
+    title: "PongSH",
+    type: "Projet solo",
+    pitch:
+      "Un interpréteur de commandes Unix (shell) modulaire et léger développé en C, conforme aux standards de programmation Epitech.",
+    stack: ["C", "POSIX / Unix", "Makefile", "Valgrind", "Criterion"],
+    role: "Développeur système : boucle REPL, parsing et tokenisation, exécution de commandes avec fork/execvp/waitpid, builtins (cd, exit) et gestion des signaux.",
+    learning:
+      "Gestion rigoureuse de la mémoire et des descripteurs de fichiers sans fuite (vérifié sous Valgrind), ainsi que la capture asynchrone des signaux (SIGINT, SIGTSTP).",
+    github: "https://github.com/guiiireg/pongsh",
+    accent: "bg-emerald-600",
+  },
 ]
 
 const skills = [
@@ -178,10 +191,12 @@ const skills = [
     items: [
       "Git & GitHub",
       "Docker",
-      "PostgreSQL",
-      "Figma",
       "Linux",
+      "PostgreSQL",
+      "Makefile",
+      "Valgrind",
       "GitHub Actions",
+      "Figma",
     ],
   },
 ]
@@ -199,16 +214,16 @@ const certifications = [
 
 const experiences = [
   {
-    period: "Novembre 2025 - Février 2026",
-    title: "Développeur n8n",
-    meta: "Stage · Nantes",
-    text: "Participation au développement d’interfaces web, intégration d’API et résolution de bugs au sein d’une équipe agile.",
-  },
-  {
     period: "Depuis Février 2026",
     title: "Streamer & YouTubeur",
     meta: "Création de contenu · Indépendant",
     text: "Lives et vidéos autour du développement informatique : vulgarisation, projets en direct et animation d’une communauté tech anglophone.",
+  },
+  {
+    period: "Novembre 2025 - Février 2026",
+    title: "Développeur n8n",
+    meta: "Stage · Nantes",
+    text: "Participation au développement d’interfaces web, intégration d’API et résolution de bugs au sein d’une équipe agile.",
   },
   {
     period: "Octobre 2024 - Décembre 2024",
@@ -217,7 +232,7 @@ const experiences = [
     text: "Autonomie, sens du service et gestion des priorités et résolution de problèmes dans un environnement rythmé.",
   },
   {
-    period: "Édition 2024",
+    period: "Édition 2023",
     title: "Bénévole au DevFest",
     meta: "DevFest Nantes",
     text: "Accueil des participants, accompagnement des speakers et soutien logistique d’un événement majeur de la communauté dev.",
