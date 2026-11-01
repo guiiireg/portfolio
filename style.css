@@ -1,0 +1,17 @@
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #536B78;
+	color: white;
+}
+
+li {
+	list-style: none;
+}
+
+li a {
+	color: white;
+	text-decoration: none;
+}
